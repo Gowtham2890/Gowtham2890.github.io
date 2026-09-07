@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gowtham Kumar — Growth & Content Strategist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0b;
+    --surface:#131315;
+    --surface-2:#1b1b1e;
+    --line: rgba(255,255,255,0.09);
+    --line-strong: rgba(255,255,255,0.16);
+    --ink:#f2efe9;
+    --muted:#938d82;
+    --muted-2:#5c5950;
+    --gold:#c9a227;
+    --gold-bright:#e0bc4e;
+    --gold-soft: rgba(201,162,39,0.12);
+    --radius: 14px;
+    --maxw: 1140px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', -apple-system, sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{ background:var(--gold); color:#0a0a0b; }
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 32px; }
+  @media (max-width:640px){ .wrap{ padding:0 20px; } }
+
+  .serif{ font-family:'Fraunces', serif; }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{
+    content:''; width:6px; height:6px; border-radius:50%; background:var(--gold); flex:none;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    padding:22px 0;
+    transition:background .35s ease, padding .35s ease, border-color .35s ease;
+    border-bottom:1px solid transparent;
+  }
+  nav.solid{
+    background:rgba(10,10,11,0.86);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+    padding:14px 0;
+  }
+  nav .wrap{ display:flex; align-items:center; justify-content:space-between; }
+  .brand{
+    font-family:'Fraunces', serif; font-size:20px; font-weight:600; font-style:italic;
+    letter-spacing:0.01em;
+  }
+  .brand span{ color:var(--gold); }
+  .navlinks{ display:flex; gap:34px; font-size:13.5px; color:var(--muted); }
+  .navlinks a:hover{ color:var(--ink); }
+  .nav-cta{
+    border:1px solid var(--line-strong); padding:9px 18px; border-radius:30px;
+    font-size:13px; color:var(--ink); white-space:nowrap;
+    transition:border-color .2s, background .2s;
+  }
+  .nav-cta:hover{ border-color:var(--gold); background:var(--gold-soft); }
+  @media (max-width:780px){ .navlinks{ display:none; } }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding:170px 0 0;
+    position:relative;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.25fr 0.85fr; gap:60px; align-items:center;
+    padding-bottom:64px;
+  }
+  @media (max-width:900px){ .hero-grid{ grid-template-columns:1fr; gap:48px; } }
+
+  .hero-head h1{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(38px, 5.4vw, 68px);
+    line-height:1.06;
+    letter-spacing:-0.01em;
+    margin:22px 0 24px;
+  }
+  .hero-head h1 em{
+    font-style:italic; font-weight:500; color:var(--gold-bright);
+  }
+  .hero-head p.sub{
+    font-size:17px; color:var(--muted); max-width:520px; margin-bottom:36px;
+  }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px; border-radius:30px; font-size:14.5px; font-weight:500;
+    transition: transform .2s ease, background .2s ease, border-color .2s ease;
+  }
+  .btn-primary{ background:var(--gold); color:#0a0a0b; }
+  .btn-primary:hover{ background:var(--gold-bright); transform:translateY(-2px); }
+  .btn-ghost{ border:1px solid var(--line-strong); color:var(--ink); }
+  .btn-ghost:hover{ border-color:var(--gold); color:var(--gold-bright); transform:translateY(-2px); }
+
+  .photo-frame{
+    position:relative; border:1px solid var(--line-strong); border-radius:18px;
+    padding:14px 14px 64px; background:var(--surface);
+    transform:rotate(1.2deg);
+    box-shadow:0 30px 60px -25px rgba(0,0,0,0.7);
+  }
+  .photo-frame .ph{
+    aspect-ratio:3/4; border-radius:10px; background:
+      radial-gradient(circle at 50% 35%, #232225, #131214 70%);
+    display:flex; align-items:center; justify-content:center;
+    position:relative; overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .photo-frame .ph .mono-init{
+    font-family:'Fraunces', serif; font-style:italic; font-weight:500;
+    font-size:120px; color:rgba(201,162,39,0.35);
+  }
+  .photo-frame .cap{
+    position:absolute; left:14px; right:14px; bottom:18px;
+    display:flex; justify-content:space-between; align-items:baseline;
+  }
+  .photo-frame .cap .name{ font-family:'Fraunces', serif; font-style:italic; font-size:19px; }
+  .photo-frame .cap .role{ font-size:11px; color:var(--muted); font-family:'JetBrains Mono', monospace; }
+
+  /* ---------- TICKER ---------- */
+  .ticker-wrap{
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    background:var(--surface); overflow:hidden; padding:16px 0;
+  }
+  .ticker-track{ display:flex; gap:48px; white-space:nowrap; animation:scroll 32s linear infinite; width:max-content; }
+  .ticker-track span{ font-family:'JetBrains Mono', monospace; font-size:12.5px; letter-spacing:0.04em; color:var(--muted); display:flex; align-items:center; gap:14px;}
+  .ticker-track span b{ color:var(--gold-bright); font-weight:500; }
+  .ticker-track span::after{ content:'•'; color:var(--line-strong); margin-left:14px; }
+  @keyframes scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{ padding:108px 0; border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+  .sec-head{ margin-bottom:56px; max-width:640px; }
+  .sec-head h2{
+    font-family:'Fraunces', serif; font-weight:600; font-size:clamp(28px,3.4vw,42px);
+    margin-top:14px; letter-spacing:-0.01em;
+  }
+  .sec-head p{ color:var(--muted); font-size:15.5px; margin-top:14px; max-width:520px; }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:64px; }
+  @media (max-width:860px){ .about-grid{ grid-template-columns:1fr; gap:36px; } }
+  .about-grid p{ color:#cfcbc2; font-size:16px; margin-bottom:18px; }
+  .about-grid p b{ color:var(--ink); font-weight:600; }
+  .fact-list{ border-top:1px solid var(--line); }
+  .fact-row{
+    display:flex; justify-content:space-between; gap:16px; padding:16px 0;
+    border-bottom:1px solid var(--line); font-size:14px;
+  }
+  .fact-row .k{ color:var(--muted); font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:.05em; text-transform:uppercase; }
+  .fact-row .v{ text-align:right; max-width:62%; }
+
+  /* ---------- PILLARS ---------- */
+  .pillars{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; }
+  @media (max-width:860px){ .pillars{ grid-template-columns:1fr; } }
+  .pillar{ background:var(--surface); padding:32px 26px 30px; position:relative; }
+  .pillar .bars{ display:flex; align-items:flex-end; gap:4px; height:36px; margin-bottom:18px; }
+  .pillar .bars i{ width:6px; border-radius:2px; background:var(--line-strong); display:block; }
+  .pillar:nth-child(1) .bars i:nth-child(1){height:40%; background:var(--gold);}
+  .pillar:nth-child(1) .bars i:nth-child(2){height:70%;}
+  .pillar:nth-child(1) .bars i:nth-child(3){height:55%;}
+  .pillar:nth-child(1) .bars i:nth-child(4){height:90%;}
+  .pillar:nth-child(2) .bars i:nth-child(1){height:60%;}
+  .pillar:nth-child(2) .bars i:nth-child(2){height:35%; background:var(--gold);}
+  .pillar:nth-child(2) .bars i:nth-child(3){height:80%;}
+  .pillar:nth-child(2) .bars i:nth-child(4){height:50%;}
+  .pillar:nth-child(3) .bars i:nth-child(1){height:30%;}
+  .pillar:nth-child(3) .bars i:nth-child(2){height:95%; background:var(--gold);}
+  .pillar:nth-child(3) .bars i:nth-child(3){height:60%;}
+  .pillar:nth-child(3) .bars i:nth-child(4){height:75%;}
+  .pillar:nth-child(4) .bars i:nth-child(1){height:50%;}
+  .pillar:nth-child(4) .bars i:nth-child(2){height:65%;}
+  .pillar:nth-child(4) .bars i:nth-child(3){height:40%; background:var(--gold);}
+  .pillar:nth-child(4) .bars i:nth-child(4){height:85%;}
+  .pillar h3{ font-family:'Fraunces', serif; font-size:20px; font-weight:600; margin-bottom:10px; }
+  .pillar p{ font-size:13.3px; color:var(--muted); }
+
+  /* ---------- WORK ---------- */
+  .work-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:22px; }
+  @media (max-width:860px){ .work-grid{ grid-template-columns:1fr; } }
+  .case{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:30px 28px; transition:border-color .25s, transform .25s;
+  }
+  .case:hover{ border-color:var(--line-strong); transform:translateY(-3px); }
+  .case .tag{
+    font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:14px; display:inline-block;
+  }
+  .case h3{ font-family:'Fraunces', serif; font-weight:600; font-size:23px; margin-bottom:12px; }
+  .case p{ color:#c8c4bb; font-size:14.5px; margin-bottom:18px; }
+  .stat-row{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px;}
+  .stat-chip{
+    font-family:'JetBrains Mono', monospace; font-size:11.5px; padding:7px 12px; border-radius:20px;
+    background:var(--gold-soft); color:var(--gold-bright); border:1px solid rgba(201,162,39,0.25);
+  }
+  .case .links{ display:flex; gap:14px; margin-top:6px; flex-wrap:wrap; }
+  .case .links a{ font-size:13px; color:var(--ink); border-bottom:1px solid var(--line-strong); padding-bottom:2px; }
+  .case .links a:hover{ color:var(--gold-bright); border-color:var(--gold-bright); }
+  .case-logo{ height:34px; margin-bottom:16px; opacity:.92; }
+
+  .also-row{ margin-top:22px; display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  @media (max-width:860px){ .also-row{ grid-template-columns:1fr; } }
+  .also-card{ border:1px dashed var(--line-strong); border-radius:12px; padding:20px; font-size:13.3px; color:var(--muted); }
+  .also-card b{ color:var(--ink); display:block; margin-bottom:6px; font-family:'Fraunces',serif; font-size:15.5px; font-weight:600;}
+
+  /* ---------- CONTENT / REELS ---------- */
+  .content-split{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:48px; }
+  @media (max-width:900px){ .content-split{ grid-template-columns:1fr; } }
+  .mock-phone{
+    background:#000; border:1px solid var(--line-strong); border-radius:20px; padding:10px;
+    width:230px; margin:0 auto;
+  }
+  .mock-screen{
+    background:#0e0e0f; border-radius:14px; aspect-ratio:9/16; padding:22px 16px; position:relative;
+    display:flex; flex-direction:column; justify-content:center; gap:14px;
+  }
+  .mock-screen .slide-no{ position:absolute; top:14px; left:16px; font-family:'JetBrains Mono', monospace; font-size:10px; color:var(--muted-2); }
+  .mock-screen .swipe{ position:absolute; bottom:14px; right:16px; font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--gold); letter-spacing:.05em; }
+  .mock-screen h4{ font-size:18px; line-height:1.25; font-weight:700; }
+  .mock-screen h4 .hl{ color:var(--gold-bright); }
+  .mock-screen .sm{ font-size:11px; color:var(--muted); margin-top:6px; }
+
+  .reels-list{ display:flex; flex-direction:column; gap:14px; }
+  .reel-card{
+    display:flex; align-items:center; gap:16px; padding:16px; border:1px solid var(--line);
+    border-radius:12px; background:var(--surface);
+  }
+  .reel-play{
+    flex:none; width:46px; height:46px; border-radius:50%; background:var(--gold-soft);
+    border:1px solid rgba(201,162,39,0.3); display:flex; align-items:center; justify-content:center;
+  }
+  .reel-play svg{ width:14px; height:14px; fill:var(--gold-bright); }
+  .reel-info{ flex:1; }
+  .reel-info .t{ font-size:14.5px; font-weight:600; margin-bottom:3px; }
+  .reel-info .m{ font-family:'JetBrains Mono', monospace; font-size:11.5px; color:var(--muted); }
+  .reel-card a.watch{
+    font-size:12.5px; color:var(--gold-bright); border-bottom:1px solid rgba(201,162,39,0.4); padding-bottom:2px; flex:none;
+  }
+
+  /* ---------- TRUSTED ---------- */
+  .trust-grid{ display:flex; flex-wrap:wrap; gap:14px; }
+  .trust-chip{
+    border:1px solid var(--line); border-radius:10px; padding:14px 18px; font-size:13.5px;
+    background:var(--surface);
+  }
+  .trust-chip b{ display:block; font-family:'Fraunces', serif; font-weight:600; font-size:15.5px; margin-bottom:3px;}
+  .trust-chip span{ color:var(--muted); font-size:12px; }
+
+  /* ---------- CONTACT ---------- */
+  .contact{ text-align:center; padding-top:120px; padding-bottom:90px; }
+  .contact h2{
+    font-family:'Fraunces', serif; font-weight:600; font-size:clamp(32px,5vw,58px); letter-spacing:-0.01em;
+    margin:18px auto 18px; max-width:760px;
+  }
+  .contact p.sub{ color:var(--muted); max-width:460px; margin:0 auto 38px; font-size:15.5px; }
+  .contact-ctas{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  footer{ padding:36px 0; }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:var(--muted-2); flex-wrap:wrap; gap:10px;}
+
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.show{ opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap">
+    <div class="brand">Gowtham<span>.</span></div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#process">Process</a>
+      <a href="#work">Work</a>
+      <a href="#content">Content</a>
+    </div>
+    <a href="mailto:gowthamkumar7729@gmail.com" class="nav-cta">Let's talk</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-head">
+        <div class="eyebrow">Hyderabad · Growth &amp; Content Strategist</div>
+        <h1>I build the systems that turn <em>followers</em> into clients.</h1>
+        <p class="sub">Four years of running accounts, shooting content, and closing deals in the DMs — for a 150K-follower mentorship creator, a spine surgeon's YouTube channel, and a construction company that started with nothing but a logo.</p>
+        <div class="hero-ctas">
+          <a href="mailto:gowthamkumar7729@gmail.com" class="btn btn-primary">Start a project →</a>
+          <a href="#work" class="btn btn-ghost">See the work</a>
+        </div>
+      </div>
+      <div class="photo-frame">
+        <div class="ph">
+          <!-- Replace this block with <img src="your-photo.jpg" alt="Gowtham Kumar" style="width:100%;height:100%;object-fit:cover;"> once you have a photo file to drop in -->
+          <span class="mono-init">G</span>
+        </div>
+        <div class="cap">
+          <span class="name">Gowtham</span>
+          <span class="role">GROWTH · CONTENT</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker-track" id="ticker"></div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">About</div>
+      <h2>Freelancer first. Strategist by necessity.</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>I'm a <b>2026 B.Com graduate</b> from Badruka College of Commerce, Hyderabad — but I've been running social accounts and closing freelance deals since before I even joined college. Four years in, I've worked with <b>15+ clients</b> across healthcare, fitness, defense, and agency niches, doing the part most "marketing agencies" skip: actually showing up daily for content, engagement, and DMs.</p>
+        <p>No ad budgets, no boosted posts — just account analysis, content that's built to be shared, and engagement systems that turn a feed into a sales pipeline. I've used that to grow personal brands into six figures of followers and built a construction company's entire digital presence from a blank slate.</p>
+        <p>Certified in <b>Excel for Business (Goldman Sachs)</b> and <b>Data Analytics (Deloitte)</b> through Forage — because the content matters, but so does reading the numbers behind it.</p>
+      </div>
+      <div class="fact-list">
+        <div class="fact-row"><span class="k">Based</span><span class="v">Hyderabad, India</span></div>
+        <div class="fact-row"><span class="k">Experience</span><span class="v">4+ years, freelance</span></div>
+        <div class="fact-row"><span class="k">Clients</span><span class="v">15+ — healthcare, fitness, defense, agency</span></div>
+        <div class="fact-row"><span class="k">Education</span><span class="v">B.Com, Badruka College of Commerce</span></div>
+        <div class="fact-row"><span class="k">Certifications</span><span class="v">Goldman Sachs · Deloitte (Forage)</span></div>
+        <div class="fact-row"><span class="k">Tools</span><span class="v">Excel · Tally · Tableau · CapCut · ElevenLabs</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">How it works</div>
+      <h2>Four pillars, every single account.</h2>
+      <p>No two clients get the same content — but every account goes through the same process before a single post goes out.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="bars"><i></i><i></i><i></i><i></i></div>
+        <h3>Analysis</h3>
+        <p>Account audit, niche research, competitor breakdown, and what's actually working in the market right now — before any content gets made.</p>
+      </div>
+      <div class="pillar">
+        <div class="bars"><i></i><i></i><i></i><i></i></div>
+        <h3>Optimization</h3>
+        <p>Bio, highlights, content format, and the personal-brand positioning that decides whether someone follows or scrolls past.</p>
+      </div>
+      <div class="pillar">
+        <div class="bars"><i></i><i></i><i></i><i></i></div>
+        <h3>Content</h3>
+        <p>Research → scripting → shooting/editing → re-optimizing based on what the data says. A loop, not a one-off calendar.</p>
+      </div>
+      <div class="pillar">
+        <div class="bars"><i></i><i></i><i></i><i></i></div>
+        <h3>Engagement</h3>
+        <p>Daily replies, DM systems, and the community-building that quietly turns into booked calls and closed deals.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Selected work</div>
+      <h2>A few accounts I've grown, end to end.</h2>
+    </div>
+    <div class="work-grid">
+
+      <div class="case">
+        <span class="tag">Personal brand · 150K followers</span>
+        <h3>Instagram mentorship creator</h3>
+        <p>Run the main Instagram account for a creator building a personal-mentorship marketing agency — content, daily engagement, and the entire DM sales pipeline: qualifying leads, booking calls, and closing. Landed the account's highest-value deal to date.</p>
+        <div class="stat-row">
+          <span class="stat-chip">150K followers managed</span>
+          <span class="stat-chip">$3,000/mo · highest deal</span>
+          <span class="stat-chip">3-month retainer</span>
+        </div>
+      </div>
+
+      <div class="case">
+        <span class="tag">0 → 1 digital presence · Hyderabad</span>
+        <h3>Land to Home Builders</h3>
+        <p>Built this construction company's entire digital presence from zero — visiting card design, full website (Framer + AI), Instagram content, and paid ads. Set up Meta Business Suite so posting and replies stay automated and leads keep coming in.</p>
+        <div class="stat-row">
+          <span class="stat-chip">Website + branding</span>
+          <span class="stat-chip">Content + ads</span>
+          <span class="stat-chip">Lead automation</span>
+        </div>
+        <div class="links">
+          <a href="https://landtohome.framer.website" target="_blank" rel="noopener">Visit website ↗</a>
+          <a href="https://www.instagram.com/land2homeconstructions/" target="_blank" rel="noopener">Instagram ↗</a>
+        </div>
+      </div>
+
+      <div class="case">
+        <span class="tag">YouTube · built from scratch</span>
+        <h3>Dr. Yogin Patel — Spine Health</h3>
+        <p>Built the channel from the ground up: growth strategy, navy-and-blue branding, the tagline "Back pain stops here," and Hinglish patient-case scripts. Crossed 300K+ views in a single month.</p>
+        <div class="stat-row">
+          <span class="stat-chip">300K+ views / month</span>
+          <span class="stat-chip">Channel built from 0</span>
+        </div>
+      </div>
+
+      <div class="case">
+        <span class="tag">Instagram · organic growth</span>
+        <h3>Lt. Cdr. Bijay Nair</h3>
+        <p>Indian Navy veteran and TEDx speaker — grew his page from a standing start to 70K+ followers on daily content and engagement, with zero paid promotion.</p>
+        <div class="stat-row">
+          <span class="stat-chip">70K+ followers gained</span>
+          <span class="stat-chip">$0 ad spend</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="also-row">
+      <div class="also-card">
+        <b>Jain Dental &amp; Orthopaedic Center</b>
+        Built an AI-assisted content line — Gemini visuals + ElevenLabs voiceover — for a steady stream of clinic reels with no camera crew.
+      </div>
+      <div class="also-card">
+        <b>International client, Kuwait</b>
+        Closed a deal entirely through Instagram DMs — no calls, no meetings, just appointment-setting in the inbox.
+      </div>
+      <div class="also-card">
+        <b>Pritesh Patel</b>
+        Collaborated with this digital marketing consultant &amp; angel investor on content for his personal brand.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="content">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Content, up close</div>
+      <h2>A few formats I actually ship.</h2>
+      <p>Carousels built around a hook, and short-form edits that have pulled real view counts — not just nice-looking templates.</p>
+    </div>
+    <div class="content-split">
+      <div class="mock-phone">
+        <div class="mock-screen">
+          <span class="slide-no">01/10</span>
+          <h4>DON'T <span class="hl">POST</span> —<br>if you think it's not perfect</h4>
+          <p class="sm">They want a solution to their problem. Focus on solving it — perfection improves automatically.</p>
+          <span class="swipe">SWIPE →</span>
+        </div>
+      </div>
+      <div class="reels-list">
+        <div class="reel-card">
+          <div class="reel-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="reel-info">
+            <div class="t">Podcast-style clip, edited &amp; captioned</div>
+            <div class="m">3.9M views</div>
+          </div>
+          <a class="watch" href="#" title="Add your reel link here">Watch ↗</a>
+        </div>
+        <div class="reel-card">
+          <div class="reel-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="reel-info">
+            <div class="t">Client testimonial cut</div>
+            <div class="m">43K views</div>
+          </div>
+          <a class="watch" href="#" title="Add your reel link here">Watch ↗</a>
+        </div>
+        <div class="reel-card">
+          <div class="reel-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="reel-info">
+            <div class="t">30-day AI avatar experiment (personal)</div>
+            <div class="m">Day 12 / 30</div>
+          </div>
+          <a class="watch" href="#" title="Add your reel link here">Watch ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="trust">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Worked with</div>
+      <h2>People and brands I've managed accounts for.</h2>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-chip"><b>Lt. Cdr. Bijay Nair</b><span>Indian Navy (Veteran) · Creator</span></div>
+      <div class="trust-chip"><b>Pritesh Patel</b><span>Digital Marketing Consultant · Angel Investor</span></div>
+      <div class="trust-chip"><b>Dr. Yogin Patel</b><span>Spine Surgeon</span></div>
+      <div class="trust-chip"><b>Dr. Pratik Bhujbal</b><span>Spine Surgeon</span></div>
+      <div class="trust-chip"><b>Land to Home Builders</b><span>Construction · Hyderabad</span></div>
+      <div class="trust-chip"><b>Jain Dental &amp; Orthopaedic Center</b><span>Healthcare</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="eyebrow" style="justify-content:center;">Get in touch</div>
+    <h2>Got an account that needs this?</h2>
+    <p class="sub">No pitch decks. Tell me what you're trying to grow and I'll tell you straight whether I can move the needle.</p>
+    <div class="contact-ctas">
+      <a href="mailto:gowthamkumar7729@gmail.com" class="btn btn-primary">gowthamkumar7729@gmail.com</a>
+      <a href="tel:+919390172453" class="btn btn-ghost">+91 93901 72453</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Gowtham Kumar</span>
+    <span>Hyderabad, India</span>
+  </div>
+</footer>
+
+<script>
+  // nav background on scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('solid', window.scrollY > 40);
+  });
+
+  // ticker content, duplicated for seamless loop
+  const stats = [
+    '<b>150K+</b> FOLLOWERS MANAGED',
+    '<b>$3,000/MO</b> HIGHEST RETAINER CLOSED',
+    '<b>1M+</b> ORGANIC VIEWS GENERATED',
+    '<b>70K+</b> AUDIENCE GROWTH — NO AD SPEND',
+    '<b>300K+</b> VIEWS / MONTH — SINGLE CHANNEL',
+    '<b>8 YRS · 55 PROJECTS</b> — LAND TO HOME BUILDERS',
+    '<b>15+</b> CLIENTS ACROSS 4 NICHES'
+  ];
+  const ticker = document.getElementById('ticker');
+  const html = stats.map(s => `<span>${s}</span>`).join('');
+  ticker.innerHTML = html + html;
+
+  // reveal on scroll
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('show'); });
+  }, { threshold:0.12 });
+  document.querySelectorAll('section, .case, .pillar, .trust-chip').forEach(el=>{
+    el.classList.add('reveal');
+    obs.observe(el);
+  });
+</script>
+
+</body>
+</html>
